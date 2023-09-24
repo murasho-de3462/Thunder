@@ -85,7 +85,8 @@ public:
 		return actions;
 	}
 
-	string ToString()const {
+	//•\¦—pŠÖ”@‚È‚­‚Ä‚à‚¢‚¢
+	string ToString() const {
 		stringstream ss;
 		ss << "turn:\t" << this->m_turn << "\n";
 		ss << "score:\t" << this->m_gameScore << "\n";
