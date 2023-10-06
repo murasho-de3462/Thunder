@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -103,10 +104,35 @@ public:
 					ss << '.';
 				}
 			}
+			ss << endl;
 		}
 
 		return ss.str();
 	}
 
+	
 };
+
+using State = MazeState;
+
+std::mt19937 mtAction(0);
+
+int RandomAction(const State& state) {
+	auto legalActions = state.LegalAction();
+	return legalActions[mtAction() % legalActions.size()];
+}
+
+void PlayGame(const int seed) {
+	auto state = State(seed);
+	cout << state.ToString() << endl;
+	while (!state.IsDone()) {
+		state.Advance(RandomAction(state));
+		cout << state.ToString() << endl;
+	}
+}
+
+int main() {
+	PlayGame(12321);
+	return 0;
+}
 
